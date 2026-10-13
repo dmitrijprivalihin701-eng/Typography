@@ -38,6 +38,8 @@ jobs:
           npx --yes @marp-team/marp-cli@latest Typography.md --html --allow-local-files --output public/Typography.html
           npx --yes @marp-team/marp-cli@latest Composition.md --pdf --allow-local-files --output public/Composition.pdf
           npx --yes @marp-team/marp-cli@latest Composition.md --html --allow-local-files --output public/Composition.html
+          npx --yes @marp-team/marp-cli@latest Color.md --pdf --allow-local-files --output public/Color.pdf
+          npx --yes @marp-team/marp-cli@latest Color.md --html --allow-local-files --output public/Color.html
 
       - name: Copy index.html to public
         run: |
