@@ -15,21 +15,44 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  publish:
+  build-and-deploy:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Convert Markdown
-        uses: KoharaKazuya/marp-cli-action@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Show files before build
+        run: ls -la
+
+      - name: Build PDFs with Marp CLI
+        run: |
+          mkdir -p public
+          npx --yes @marp-team/marp-cli@latest Typography.md --pdf --allow-local-files --output public/Typography.pdf
+          npx --yes @marp-team/marp-cli@latest Composition.md --pdf --allow-local-files --output public/Composition.pdf
+
+      - name: Copy index.html to public
+        run: |
+          ls -la
+          find . -maxdepth 1 -iname "index.html" -exec cp -v {} public/index.html \;
+
+      - name: Show public folder
+        run: ls -la public
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: 'public'
 
       - name: Deploy to GitHub Pages
         id: deployment
