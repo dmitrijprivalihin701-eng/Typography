@@ -6,6 +6,54 @@ backgroundColor: '#2a2a2a'
 color: '#e8e8e8'
 ---
 
+<style>
+section {
+  font-size: 26px;
+}
+
+h1, h2, h3 {
+  color: #ffffff;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+  font-size: 20px;
+}
+
+th {
+  background: #3a3a3a;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 14px;
+  border: 1px solid #555;
+  text-align: left;
+}
+
+td {
+  padding: 10px 14px;
+  border: 1px solid #555;
+  color: #e8e8e8;
+  background: #2f2f2f;
+}
+
+tr:nth-child(even) td {
+  background: #353535;
+}
+
+strong {
+  color: #ffffff;
+}
+
+code {
+  background: #3a3a3a;
+  color: #ffd479;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+</style>
+
 # Композиция в дизайне
 ### Шпаргалка
 
