@@ -24,10 +24,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build slides with Marp (HTML + PDF)
+      - name: Build slides with Marp
         uses: KoharaKazuya/marp-cli-action@v4
         with:
-          pdf: true
+          pre_args: '--pdf --allow-local-files'
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
