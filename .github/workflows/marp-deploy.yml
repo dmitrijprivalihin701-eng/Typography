@@ -32,11 +32,12 @@ jobs:
       - name: Show files before build
         run: ls -la
 
-      - name: Build PDFs with Marp CLI
+      - name: Build PDFs and HTML with Marp CLI
         run: |
-          mkdir -p public
           npx --yes @marp-team/marp-cli@latest Typography.md --pdf --allow-local-files --output public/Typography.pdf
+          npx --yes @marp-team/marp-cli@latest Typography.md --html --allow-local-files --output public/Typography.html
           npx --yes @marp-team/marp-cli@latest Composition.md --pdf --allow-local-files --output public/Composition.pdf
+          npx --yes @marp-team/marp-cli@latest Composition.md --html --allow-local-files --output public/Composition.html
 
       - name: Copy index.html to public
         run: |
