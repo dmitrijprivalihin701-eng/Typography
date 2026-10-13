@@ -15,22 +15,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  publish:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Build slides with Marp
+      - name: Convert Markdown
         uses: KoharaKazuya/marp-cli-action@v4
-        with:
-          pre_args: '--pdf --allow-local-files'
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
